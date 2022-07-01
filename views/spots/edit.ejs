@@ -1,0 +1,45 @@
+<% layout('layouts/boilerplate')%>
+
+    <div class="row">
+        <h1 class="text-center">Edit MiamiAqua Spot</h1>
+        <div class="col-6 offset-3">
+            <!-- this is doing a put method for the form-->
+            <form action="/spots/<%=spot._id%>?_method=PUT" method='post'>
+                <div class='mb-3'>
+                    <label class='form-label' for="name">Spot Name</label>
+                    <input class='form-control' type="text" name='name' id='name' value='<%=spot.name%>'>
+                </div>
+                <div class='mb-3 form-group'>
+                    <label class='form-label' for="price">Price</label>
+                    <select class='form-control' name='price' id='price'>
+                        <option value=0>0</option>
+                        <option value=1>$</option>
+                        <option value=2>$$</option>
+                        <option value=3>$$$</option>
+                    </select>
+                </div>
+                <div class='mb-3'>
+                    <label class='form-label' for="activity">Activity</label>
+                    <select class='form-control' name="activity" id='activity'>
+                        <option value="beach day">beach day</option>
+                        <option value="snorkeling">snorkeling</option>
+                        <option value="paddle boarding">paddle boarding</option>
+                    </select>
+                </div>
+                <div class='mb-3'>
+                    <label class='form-label' for="imgage">Image URL</label>
+                    <input class='form-control' type="text" name='image' id='image' value='<%=spot.image%>'>
+                </div>
+                <div class='mb-3'>
+                    <label class='form-label' for="description">Description</label>
+                    <textarea class='form-control' type="text" name='description'
+                        id='description'><%=spot.description%></textarea>
+                </div>
+                <div class='mb-1'>
+                    <button class='btn btn-success'>Submit Update</button>
+                    <a class='btn btn-secondary' href="/spots/<%=spot._id%>">Cancel</a>
+                </div>
+            </form>
+            <a href="/spots">All MiamiAqua Spots</a>
+        </div>
+    </div>

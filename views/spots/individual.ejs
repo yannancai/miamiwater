@@ -1,0 +1,106 @@
+<% layout('layouts/boilerplate')%>
+    <link rel="stylesheet" href="/stylesheets/stars.css">
+
+
+
+    <div class="row">
+        <div id='map' style='width: 400px; height: 300px;'></div>
+        <div class="col-6">
+            <div class="card">
+                <img src='<%=spot.image%>' class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%=spot.name %>
+                    </h5>
+                    <p class="card-text">
+                        Submitted by <%=spot.author.username%>
+                    </p>
+                    <p class="card-text">
+                        <%=spot.description%>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Location: <%=spot.location %>
+                    </li>
+                    <li class="list-group-item">Activity:
+                        <a href="/spots?activity=<%=spot.activity%>">
+                            <%=spot.activity%>
+                        </a>
+                    </li>
+                    <li class="list-group-item">Price: <%=spot.price %>
+                    </li>
+                </ul>
+                <% if( currentUser && spot.author.equals(currentUser._id)) {%>
+                    <div class="card-body">
+                        <a class="card-link btn btn-secondary" href="/spots/<%=spot._id%>/edit">Edit</a>
+                        <form class='d-inline' action="/spots/<%=spot._id%>?_method=DELETE" method='post'>
+                            <button class='btn btn-danger'>Delete</button>
+                        </form>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <% if(currentUser) {%>
+                <h2>Leave a Review</h2>
+                <form action="/spots/<%=spot._id%>/reviews" method="POST" class='mb-3'>
+                    <div class="mb-3">
+                        <fieldset class="starability-basic">
+                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
+                                checked aria-label="No rating." />
+                            <input type="radio" id="second-rate1" name="review[rating]" value="1" />
+                            <label for="second-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="second-rate2" name="review[rating]" value="2" />
+                            <label for="second-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="second-rate3" name="review[rating]" value="3" />
+                            <label for="second-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="second-rate4" name="review[rating]" value="4" />
+                            <label for="second-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="second-rate5" name="review[rating]" value="5" />
+                            <label for="second-rate5" title="Amazing">5 stars</label>
+                        </fieldset>
+                    </div>
+                    <div class="mb-3">
+                        <label class='form-label' for="reviewbody">Review</label>
+                        <textarea class='form-control' name="review[body]" id="body" cols="30" rows="2"
+                            required></textarea>
+                    </div>
+                    <button class='btn btn-success'>Submit</button>
+                </form>
+                <% } %>
+                    <% for(let review of spot.reviews) { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <!-- <h5 class="card-title"> Rating: <%=review.rating %>
+                                </h5> -->
+                                <h5 class="card-title">
+                                    <%= review.author.username %>
+                                </h5>
+                                <p class="starability-result" data-rating="<%=review.rating %>">
+                                    Rated: <%=review.rating %> stars
+                                </p>
+
+                                <p class="card-text"> Review: <%=review.body%>
+                                </p>
+                                <% if( currentUser && review.author.equals(currentUser._id)) {%>
+                                    <form action="/spots/<%=spot._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                        method='POST'>
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <% } %>
+                            </div>
+                        </div>
+                        <% } %>
+        </div>
+    </div>
+
+    <div>
+        <%= spot %>
+    </div>
+
+    <script>
+        const coord = <%= JSON.stringify(spot.geometry.coordinates) %>;
+    </script>
+
+    <script src="/javascripts/individualPageMap.js"></script>
