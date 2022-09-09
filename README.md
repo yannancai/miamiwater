@@ -1,7 +1,7 @@
 # MiamiWater
 ---
-A full-stack Node.js application for users to post, comment, rate, and review Miami water spots
----
+A full-stack Node.js application to post, comment, rate, and review fantastic Miami Water spots
+
 ▪ Front-end: using Bootstrap and JavaScript, including home page, spot show/edit pages with comment/rating panels, and log-in/registration pages; utilized EJS as template engine
 
 ▪ Back-end: used Express.js as the framework; implemented CRUD functionality for spots and comments, as well as routing; used Passport.js for log-in 
