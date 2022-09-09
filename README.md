@@ -1,4 +1,4 @@
-# miamiwater
+# MiamiWater
 ---
 A full-stack Node.js application for users to post, comment, rate, and review Miami water spots
 ---
