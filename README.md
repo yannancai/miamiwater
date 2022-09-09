@@ -1,4 +1,4 @@
-# MiamiWater 🤿🐡🐠🏝️🐙🐬🏖️🏄🌴 🌞🐚👙🌅⛵🩱🦪🐟🦞🦀🦑🦈🐳
+# MiamiWater 🤿🐠🏝️🐬🏖️🏄🌞🌅⛵🦈🐳
 A full-stack Node.js application to post, comment, and rate fantastic Miami Water spots
 ---
 ▪ Front-end: using Bootstrap and JavaScript, including home page, spot show/edit pages with comment/rating panels, and log-in/registration pages; utilized EJS as template engine
